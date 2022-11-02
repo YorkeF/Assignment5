@@ -1,0 +1,51 @@
+                       Programming  Assignment – 5
+                       CS 2133 Computer Science II
+                   Due: 11/15/2022 at 11:59 PM on CANVAS
+                                50 points
+-------------------------------------------------------------------------------
+Analyze the time complexity of the below code/programs and explain your answer
+briefly. (2.5 * 4 = 10 points)
+-------------------------------------------------------------------------------
+1.) What is the time complexity of following code:
+        for (i = 0; i < N; i++) {
+            for (j = N; j > i; j--) {
+            a = a + i + j;
+            }
+        }
+
+Answer:
+
+-------------------------------------------------------------------------------
+2.) What is the time complexity of following code:
+        int a = 0, i = N;
+        while (i > 0) {
+            a += i;
+            i /= 2;
+        }
+
+Answer:
+
+-------------------------------------------------------------------------------
+3.) What is the time complexity of following code:
+        for (i = 0; i < A; i++) {
+            sequence of statements;
+        }
+        for (j = 0; j < B; j++) {
+            sequence of statements;
+        }
+
+
+Answer:
+
+-------------------------------------------------------------------------------
+3.a) How would the complexity change if the second loop went to A instead of B?
+
+Answer:
+
+-------------------------------------------------------------------------------
+4.) What is the time complexity of the following code:
+        int n = 1000;
+        System.out.println("Your input is: " + n);
+        int a = 0;
+
+Answer:
