@@ -1,3 +1,10 @@
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 /*
 --------------------------------------------------------------------------------------------------
 SIMPLE SENTIMENT ANALYSIS                                                             (40 POINTS)
@@ -48,8 +55,33 @@ Sentence ID 1 has 15 phrases with an average rating of 3.5. The overall sentimen
  */
 public class Ferrell_ProblemSentimentAnalysis {
 
-    public static void main(String[] args) {
-        System.out.println("Hello world!");
+    public static void main(String[] args) throws IOException {
+
+        File movieReviews = new File("src/movieReviews.tsv");
+        List<String[]> list = Files.lines(movieReviews.toPath())
+                .map(line -> line.split("\t"))
+                .collect(Collectors.toList());
+
+        ReviewEntry[] entries = new ReviewEntry[8545];
+        int b = 1;
+        for (int i = 1; i < list.size(); i++) {
+            if(b == 2628 || b == 2746 || b == 4044 || b == 4365 || b == 4761 || b == 5695 || b == 5916 || b == 6231 || b == 6358 || b == 6673 || b == 6922  || b == 7325 || b == 7473 || b == 8443 || b == 8530){
+                b++;//What the fuck.
+            }
+            if(Integer.parseInt(list.get(i)[1]) == b) {
+                entries[b] = new ReviewEntry(list.get(i));
+                b++;
+                if(b == 8545){
+                    break;
+                }
+            }else {
+                entries[b].addAPhrase(list.get(i));
+            }
+        }
+
+
+
     }
+
 
 }
