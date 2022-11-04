@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
 /*
 --------------------------------------------------------------------------------------------------
 SIMPLE SENTIMENT ANALYSIS                                                             (40 POINTS)
@@ -53,6 +54,7 @@ print the statistics of the corresponding sentence in the following format:
 Sentence ID 1 has 15 phrases with an average rating of 3.5. The overall sentiment is positive.
 --------------------------------------------------------------------------------------------------
  */
+
 public class Ferrell_ProblemSentimentAnalysis {
 
     public static void main(String[] args) throws IOException {
