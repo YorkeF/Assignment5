@@ -5,6 +5,8 @@ public class ReviewEntry {
     private double sentiment = 0;
     private int numOfPhrases;
 
+    private String positivity;
+
     private int total = 0;
 
     public ReviewEntry(){
@@ -41,10 +43,27 @@ public class ReviewEntry {
         numOfPhrases = 1;
     }
 
+    public String getPositivity(){
+        if( numOfPhrases != 0 ) {
+            sentiment = (double)total / (double)numOfPhrases;
+        }else {
+            sentiment = 0;
+        }
+
+        if (sentiment < 2){
+            positivity = "Negative";
+        } else if (sentiment < 3) {
+            positivity = "Neutral";
+        } else {
+            positivity = "Positive";
+        }
+
+        return positivity;
+    }
+
     public void setNumOfPhrases(int numOfPhrases) {
         this.numOfPhrases = numOfPhrases;
     }
-
     public int getNumOfPhrases() {
         return numOfPhrases;
     }
@@ -57,47 +76,42 @@ public class ReviewEntry {
     public void setPhrase(String phrase) {
         this.phrase = phrase;
     }
-
     public int getPhraseId() {
         return phraseId;
     }
-
     public void setPhraseId(int phraseId) {
         this.phraseId = phraseId;
     }
-
     public int getSentenceId() {
         return sentenceId;
     }
-
-    public int getSentiment() {
-        return (int) sentiment;
-    }
-
-    public String getPhrase() {
-        return phrase;
-    }
-
-    public void setSentenceId(int sentenceId) {
-        this.sentenceId = sentenceId;
-    }
-
-    public void setSentiment(int sentiment) {
-        this.sentiment = sentiment;
-    }
-
-    public void computeAvgSentiment(){
-
-    }
-
-    public void printEntry(){
+    public double getSentiment() {
         if( numOfPhrases != 0 ) {
             sentiment = (double)total / (double)numOfPhrases;
         }else {
             sentiment = 0;
         }
+        return sentiment;
+    }
+    public String getPhrase() {
+        return phrase;
+    }
+    public void setSentenceId(int sentenceId) {
+        this.sentenceId = sentenceId;
+    }
+    public void setSentiment(int sentiment) {
+        this.sentiment = sentiment;
+    }
 
-        System.out.println("\nSentence ID: " + sentenceId + "\nPhrase: " + phrase + "\nSentiment: " + sentiment);
+    public void printEntry(){
+
+        System.out.println("\nSentence ID: " + sentenceId + "\nPhrase: " + phrase + "\nSentiment: " + this.getSentiment());
+    }
+
+    public void printSearchedEntry(){
+        //Sentence ID 1 has 15 phrases with an average rating of 3.5. The overall sentiment is positive.
+        System.out.println("\nSentence ID " + sentenceId + " has " + numOfPhrases + " phrases with an average rating of " + this.getSentiment()
+                            + ". The overall sentiment is " + this.getPositivity() + ".\n");
     }
 
 }

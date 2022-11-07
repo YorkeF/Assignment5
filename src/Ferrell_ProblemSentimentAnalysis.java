@@ -1,11 +1,9 @@
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
-
 /*
 --------------------------------------------------------------------------------------------------
 SIMPLE SENTIMENT ANALYSIS                                                             (40 POINTS)
@@ -54,15 +52,47 @@ print the statistics of the corresponding sentence in the following format:
 Sentence ID 1 has 15 phrases with an average rating of 3.5. The overall sentiment is positive.
 --------------------------------------------------------------------------------------------------
  */
-
 public class Ferrell_ProblemSentimentAnalysis {
-
     public static void main(String[] args) throws IOException {
+        ReviewEntry[] entries = parseFile();
+        searching(entries);
 
+
+    }
+
+    public static void searching(ReviewEntry[] entries){
+        Scanner scan = new Scanner(System.in);
+        int input = 0;
+        do {
+            boolean going = true;
+            while (going) {
+                try {
+                    System.out.print("_______________________________________ " +
+                                       "\nInput a sentence ID or enter 0 to stop: ");
+                    input = scan.nextInt();
+                    going = false;
+                }catch(Exception e){
+                    scan.nextLine();
+                    if(e.toString() == "java.util.InputMismatchException") {
+                        System.out.println("You entered something other than an Integer\nTry again");
+                    }else{
+                        e.printStackTrace();
+                    }
+                }
+            }
+            if(input > 0 && input < 8545) {
+                entries[input].printSearchedEntry();
+            } else if (input == 0){
+                System.out.println("\nEnding Program");
+            } else {
+                System.out.println("\nThere is not a review with that entry.");
+            }
+        } while(input != 0);
+    }
+
+    public static ReviewEntry[] parseFile() throws IOException {
         File movieReviews = new File("src/movieReviews.tsv");
-        List<String[]> list = Files.lines(movieReviews.toPath())
-                .map(line -> line.split("\t"))
-                .collect(Collectors.toList());
+        List<String[]> list = Files.lines(movieReviews.toPath()).map(line -> line.split("\t")).collect(Collectors.toList());
 
         ReviewEntry[] entries = new ReviewEntry[8545];
         for (int i = 0; i < 8545; i++) {
@@ -80,8 +110,7 @@ public class Ferrell_ProblemSentimentAnalysis {
                 if(b == 8545){
                     break;
                 }
-
-            //Adds phrases to the Main Object
+                //Adds phrases to the Main Object
             }else {
                 if(b-1 == 2628 || b-1 == 2746 || b-1 == 4044 || b-1 == 4365 || b-1 == 4761 || b-1 == 5695 || b-1 == 5916 || b-1 == 6231 || b-1 == 6358 || b-1 == 6673 || b-1 == 6922 || b-1 == 7325 || b-1 == 7473 || b-1 == 8443 || b-1 == 8530){
                     entries[b - 2].addAPhrase(list.get(i));
@@ -89,17 +118,7 @@ public class Ferrell_ProblemSentimentAnalysis {
                     entries[b - 1].addAPhrase(list.get(i));
                 }
             }
-
         }
-
-        for (int i = 0; i < 8545; i++) {
-            entries[i].printEntry();
-        }
-
-
-
-
+        return entries;
     }
-
-
 }
