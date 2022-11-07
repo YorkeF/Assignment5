@@ -65,10 +65,12 @@ public class Ferrell_ProblemSentimentAnalysis {
                 .collect(Collectors.toList());
 
         ReviewEntry[] entries = new ReviewEntry[8545];
+        for (int i = 0; i < 8545; i++) {
+            entries[i] = new ReviewEntry(i);
+        }
         int b = 1;
         for (int i = 1; i < list.size(); i++) {
             if(b == 2628 || b == 2746 || b == 4044 || b == 4365 || b == 4761 || b == 5695 || b == 5916 || b == 6231 || b == 6358 || b == 6673 || b == 6922  || b == 7325 || b == 7473 || b == 8443 || b == 8530){
-                entries[b] = new ReviewEntry();
                 b++;
             }
             //Creates the Main Object
@@ -81,9 +83,19 @@ public class Ferrell_ProblemSentimentAnalysis {
 
             //Adds phrases to the Main Object
             }else {
-                entries[b - 1].addAPhrase(list.get(i));
+                if(b-1 == 2628 || b-1 == 2746 || b-1 == 4044 || b-1 == 4365 || b-1 == 4761 || b-1 == 5695 || b-1 == 5916 || b-1 == 6231 || b-1 == 6358 || b-1 == 6673 || b-1 == 6922 || b-1 == 7325 || b-1 == 7473 || b-1 == 8443 || b-1 == 8530){
+                    entries[b - 2].addAPhrase(list.get(i));
+                }else {
+                    entries[b - 1].addAPhrase(list.get(i));
+                }
             }
+
         }
+
+        for (int i = 0; i < 8545; i++) {
+            entries[i].printEntry();
+        }
+
 
 
 

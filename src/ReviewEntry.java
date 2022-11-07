@@ -2,15 +2,27 @@ public class ReviewEntry {
     private int phraseId;
     private int sentenceId;
     private String phrase;
-    private int sentiment;
+    private double sentiment = 0;
     private int numOfPhrases;
+
+    private int total = 0;
 
     public ReviewEntry(){
         phraseId = 0;
         sentenceId = 0;
         phrase = "";
         sentiment = 0;
-        System.out.println("Default Constructor");
+        total = 0;
+        numOfPhrases = 0;
+    }
+
+    public ReviewEntry(int a){
+        phraseId = 0;
+        sentenceId = a;
+        phrase = "";
+        sentiment = 0;
+        total = 0;
+        numOfPhrases = 0;
     }
 
     public ReviewEntry(int phraseId, int sentenceId, String phrase, int sentiment){
@@ -21,14 +33,11 @@ public class ReviewEntry {
     }
 
     public ReviewEntry(String[] entry){
-        System.out.print("Creating an Entry: ");
         phraseId = Integer.parseInt(entry[0]);
         sentenceId = Integer.parseInt(entry[1]);
-        System.out.print(sentenceId + "\n           Phrase: ");
         phrase = entry[2];
-        System.out.print(phrase + "\n        Sentiment: ");
-        sentiment = Integer.parseInt(entry[3]);
-        System.out.print(sentiment + "\n\n");
+        total = Integer.parseInt(entry[3]);
+        sentiment = 0;
         numOfPhrases = 1;
     }
 
@@ -41,6 +50,7 @@ public class ReviewEntry {
     }
 
     public void addAPhrase(String[] line) {
+        total += Integer.parseInt(line[3]);
         numOfPhrases++;
     }
 
@@ -61,7 +71,7 @@ public class ReviewEntry {
     }
 
     public int getSentiment() {
-        return sentiment;
+        return (int) sentiment;
     }
 
     public String getPhrase() {
@@ -76,8 +86,18 @@ public class ReviewEntry {
         this.sentiment = sentiment;
     }
 
+    public void computeAvgSentiment(){
+
+    }
+
     public void printEntry(){
-        System.out.println(phraseId + ", " + sentenceId + ", " + phrase + ", " + sentiment);
+        if( numOfPhrases != 0 ) {
+            sentiment = (double)total / (double)numOfPhrases;
+        }else {
+            sentiment = 0;
+        }
+
+        System.out.println("\nSentence ID: " + sentenceId + "\nPhrase: " + phrase + "\nSentiment: " + sentiment);
     }
 
 }
