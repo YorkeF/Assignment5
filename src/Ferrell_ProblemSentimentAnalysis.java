@@ -56,8 +56,6 @@ public class Ferrell_ProblemSentimentAnalysis {
     public static void main(String[] args) throws IOException {
         ReviewEntry[] entries = parseFile();
         searching(entries);
-
-
     }
 
     public static void searching(ReviewEntry[] entries){
@@ -68,7 +66,7 @@ public class Ferrell_ProblemSentimentAnalysis {
             while (going) {
                 try {
                     System.out.print("_______________________________________ " +
-                                       "\nInput a sentence ID or enter 0 to stop: ");
+                                   "\nInput a sentence ID or enter 0 to stop: ");
                     input = scan.nextInt();
                     going = false;
                 }catch(Exception e){

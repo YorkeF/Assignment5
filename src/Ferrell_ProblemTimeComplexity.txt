@@ -9,7 +9,7 @@ briefly. (2.5 * 4 = 10 points)
 1.) What is the time complexity of following code:
         for (i = 0; i < N; i++) {
             for (j = N; j > i; j--) {
-            a = a + i + j;
+                a = a + i + j;
             }
         }
 
