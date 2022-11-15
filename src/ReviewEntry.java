@@ -1,10 +1,8 @@
 public class ReviewEntry {
-    private int sentenceId;
-    private String phrase;
+    private final int sentenceId;
+    private final String phrase;
     private double sentiment;
     private int numOfPhrases;
-
-    private String positivity;
 
     private int total;
     public ReviewEntry(int a){
@@ -28,6 +26,7 @@ public class ReviewEntry {
             sentiment = 0;
         }
 
+        String positivity;
         if (sentiment < 2){
             positivity = "Negative";
         } else if (sentiment < 3) {
