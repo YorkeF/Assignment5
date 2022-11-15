@@ -54,7 +54,10 @@ Sentence ID 1 has 15 phrases with an average rating of 3.5. The overall sentimen
  */
 public class Ferrell_ProblemSentimentAnalysis {
     public static void main(String[] args) throws IOException {
+        //calls the parseFile method that returns an array of ReviewEntries.
         ReviewEntry[] entries = parseFile();
+
+        //Begins the looping search functionality.
         searching(entries);
     }
 
@@ -89,7 +92,16 @@ public class Ferrell_ProblemSentimentAnalysis {
     }
 
     public static ReviewEntry[] parseFile() throws IOException {
-        File movieReviews = new File("src/movieReviews.tsv");
+        File movieReviews = null;
+        try {
+            movieReviews = new File("src/movieReviews.tsv");
+        } catch (Exception e){
+            try {
+                movieReviews = new File("movieReviews.tsv");
+            } catch (Exception f){
+                System.out.println("movieReviews.tsv File not Found.\n Error thrown: " + f);
+            }
+        }
         List<String[]> list = Files.lines(movieReviews.toPath()).map(line -> line.split("\t")).collect(Collectors.toList());
 
         ReviewEntry[] entries = new ReviewEntry[8545];

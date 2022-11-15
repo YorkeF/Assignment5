@@ -13,7 +13,7 @@ briefly. (2.5 * 4 = 10 points)
             }
         }
 
-Answer:
+Answer: O(N^2), because each runs n times and it is a nested loop.
 
 -------------------------------------------------------------------------------
 2.) What is the time complexity of following code:
@@ -23,7 +23,7 @@ Answer:
             i /= 2;
         }
 
-Answer:
+Answer: O(N), because there is only one loop, and the rest is in constant time.
 
 -------------------------------------------------------------------------------
 3.) What is the time complexity of following code:
@@ -35,12 +35,12 @@ Answer:
         }
 
 
-Answer:
+Answer: O(A+B), because there are two loops that run A and B times.
 
 -------------------------------------------------------------------------------
 3.a) How would the complexity change if the second loop went to A instead of B?
 
-Answer:
+Answer: O(2A) because there are now 2 loops that run the same amount of times and are not nested.
 
 -------------------------------------------------------------------------------
 4.) What is the time complexity of the following code:
@@ -48,4 +48,4 @@ Answer:
         System.out.println("Your input is: " + n);
         int a = 0;
 
-Answer:
+Answer: O(1), because there is no iterative looping, it will run at constant time.
